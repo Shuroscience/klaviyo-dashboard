@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextSense — Klaviyo Email Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #FFFFFF;
+    color: #363A4F;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 28px;
+    color: #2B2E3F;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: #363A4F;
+    opacity: 0.7;
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .kpi-card {
+    background: #C1CFF822;
+    border-left: 4px solid #AAA8FF;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .kpi-card .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #363A4F;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+  .kpi-card .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2B2E3F;
+  }
+  .kpi-card .detail {
+    font-size: 12px;
+    color: #363A4F;
+    opacity: 0.6;
+    margin-top: 4px;
+  }
+  .section {
+    margin-bottom: 40px;
+  }
+  .section h2 {
+    font-size: 20px;
+    color: #2B2E3F;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #C1CFF8;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #C1CFF833;
+    color: #2B2E3F;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #C1CFF844;
+  }
+  tr:hover td {
+    background: #FFFBA544;
+  }
+  .bar-container {
+    width: 80px;
+    height: 8px;
+    background: #C1CFF833;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .bar {
+    height: 100%;
+    border-radius: 4px;
+    background: #AAA8FF;
+  }
+  .bar.click { background: #7F9EF8; }
+  .bar.bounce { background: #FFC28A; }
+  .status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .status-live { background: #71D68844; color: #2d7a3e; }
+  .status-draft { background: #FFFBA5; color: #363A4F; }
+  .status-manual { background: #C1CFF844; color: #363A4F; }
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  .flow-card {
+    background: #C1CFF815;
+    border: 1px solid #C1CFF844;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .flow-card .name {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .flow-card .status {
+    font-size: 12px;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #363A4F;
+    opacity: 0.5;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<h1>Klaviyo Email Dashboard</h1>
+<p class="subtitle">Generated 2026-03-13 &nbsp;|&nbsp; NextSense Smartbuds</p>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="label">Total Campaigns Sent</div>
+    <div class="value">30</div>
+    <div class="detail">1 drafts, 0 scheduled</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Total Recipients</div>
+    <div class="value">33,638</div>
+    <div class="detail">Across all sent campaigns</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Avg. Open Rate</div>
+    <div class="value">48.9%</div>
+    <div class="detail">Unique opens</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Avg. Click Rate</div>
+    <div class="value">7.3%</div>
+    <div class="detail">Unique clicks</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Avg. Delivery Rate</div>
+    <div class="value">98.8%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Active Flows</div>
+    <div class="value">5</div>
+    <div class="detail">9 total</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Campaign Performance</h2>
+  
+  <table><thead><tr><th>Campaign</th><th>Recipients</th><th>Open Rate</th><th></th><th>Click Rate</th><th></th><th>Delivery</th><th>Unsubs</th></tr></thead><tbody>
+    <tr>
+      <td><strong>2/9 Newsletter (Launch)</strong></td>
+      <td>4,673</td>
+      <td>22.4%</td>
+      <td><div class="bar-container"><div class="bar" style="width:22%"></div></div></td>
+      <td>0.4%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:2%"></div></div></td>
+      <td>97.8%</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td><strong>3/7 - Last Call Early Bird</strong></td>
+      <td>4,656</td>
+      <td>20.9%</td>
+      <td><div class="bar-container"><div class="bar" style="width:21%"></div></div></td>
+      <td>0.4%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:2%"></div></div></td>
+      <td>97.6%</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td><strong>7/31 Newsletter - JB Note</strong></td>
+      <td>4,557</td>
+      <td>9.3%</td>
+      <td><div class="bar-container"><div class="bar" style="width:9%"></div></div></td>
+      <td>0.2%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:1%"></div></div></td>
+      <td>98.6%</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td><strong>Price Change - General</strong></td>
+      <td>4,480</td>
+      <td>20.9%</td>
+      <td><div class="bar-container"><div class="bar" style="width:21%"></div></div></td>
+      <td>0.3%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:1%"></div></div></td>
+      <td>97.5%</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td><strong>5.16 BETA: GENERAL</strong></td>
+      <td>4,417</td>
+      <td>14.4%</td>
+      <td><div class="bar-container"><div class="bar" style="width:14%"></div></div></td>
+      <td>3.3%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:17%"></div></div></td>
+      <td>98.9%</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td><strong>Email 1</strong></td>
+      <td>1,925</td>
+      <td>57.2%</td>
+      <td><div class="bar-container"><div class="bar" style="width:57%"></div></div></td>
+      <td>2.6%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:13%"></div></div></td>
+      <td>99.3%</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td><strong>1/29 Newsletter</strong></td>
+      <td>1,496</td>
+      <td>59.5%</td>
+      <td><div class="bar-container"><div class="bar" style="width:59%"></div></div></td>
+      <td>0.8%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:4%"></div></div></td>
+      <td>99.0%</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td><strong>1/7 Newsletter</strong></td>
+      <td>1,006</td>
+      <td>56.5%</td>
+      <td><div class="bar-container"><div class="bar" style="width:57%"></div></div></td>
+      <td>1.1%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:6%"></div></div></td>
+      <td>98.5%</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td><strong>December 17 Newsletter</strong></td>
+      <td>990</td>
+      <td>60.2%</td>
+      <td><div class="bar-container"><div class="bar" style="width:60%"></div></div></td>
+      <td>0.8%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:4%"></div></div></td>
+      <td>98.7%</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td><strong>Clone 10/22 Newsletter</strong></td>
+      <td>987</td>
+      <td>46.0%</td>
+      <td><div class="bar-container"><div class="bar" style="width:46%"></div></div></td>
+      <td>1.6%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:8%"></div></div></td>
+      <td>98.1%</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td><strong>Clone 11/11 Newsletter</strong></td>
+      <td>985</td>
+      <td>39.4%</td>
+      <td><div class="bar-container"><div class="bar" style="width:39%"></div></div></td>
+      <td>0.8%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:4%"></div></div></td>
+      <td>97.9%</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td><strong>December 9 Newsletter</strong></td>
+      <td>980</td>
+      <td>59.0%</td>
+      <td><div class="bar-container"><div class="bar" style="width:59%"></div></div></td>
+      <td>2.5%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:12%"></div></div></td>
+      <td>98.8%</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td><strong>3/7 Fit Confirmation Email</strong></td>
+      <td>517</td>
+      <td>68.6%</td>
+      <td><div class="bar-container"><div class="bar" style="width:69%"></div></div></td>
+      <td>14.5%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:72%"></div></div></td>
+      <td>99.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>9/8 Newsletter - Update</strong></td>
+      <td>507</td>
+      <td>69.8%</td>
+      <td><div class="bar-container"><div class="bar" style="width:70%"></div></div></td>
+      <td>3.4%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:17%"></div></div></td>
+      <td>97.8%</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access Announcement</strong></td>
+      <td>242</td>
+      <td>15.1%</td>
+      <td><div class="bar-container"><div class="bar" style="width:15%"></div></div></td>
+      <td>4.2%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:21%"></div></div></td>
+      <td>98.3%</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td><strong>PRice Change - $319+</strong></td>
+      <td>229</td>
+      <td>66.5%</td>
+      <td><div class="bar-container"><div class="bar" style="width:67%"></div></div></td>
+      <td>1.3%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:7%"></div></div></td>
+      <td>99.1%</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td><strong>Clone Early Access Announcement</strong></td>
+      <td>223</td>
+      <td>41.6%</td>
+      <td><div class="bar-container"><div class="bar" style="width:42%"></div></div></td>
+      <td>14.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:70%"></div></div></td>
+      <td>99.1%</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><strong>10/24 JB Note</strong></td>
+      <td>212</td>
+      <td>16.3%</td>
+      <td><div class="bar-container"><div class="bar" style="width:16%"></div></div></td>
+      <td>3.8%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:19%"></div></div></td>
+      <td>98.1%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>5.16 BETA: PREORDERS</strong></td>
+      <td>191</td>
+      <td>54.4%</td>
+      <td><div class="bar-container"><div class="bar" style="width:54%"></div></div></td>
+      <td>20.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:100%"></div></div></td>
+      <td>94.2%</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><strong>Price Change - &lt;$319</strong></td>
+      <td>92</td>
+      <td>61.1%</td>
+      <td><div class="bar-container"><div class="bar" style="width:61%"></div></div></td>
+      <td>2.2%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:11%"></div></div></td>
+      <td>97.8%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>8/6 Newsletter - JB Note - Beta Tester Interest</strong></td>
+      <td>48</td>
+      <td>33.3%</td>
+      <td><div class="bar-container"><div class="bar" style="width:33%"></div></div></td>
+      <td>0.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:0%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access App Store</strong></td>
+      <td>42</td>
+      <td>73.8%</td>
+      <td><div class="bar-container"><div class="bar" style="width:74%"></div></div></td>
+      <td>21.4%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:100%"></div></div></td>
+      <td>100.0%</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access - BTS</strong></td>
+      <td>41</td>
+      <td>80.5%</td>
+      <td><div class="bar-container"><div class="bar" style="width:80%"></div></div></td>
+      <td>0.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:0%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>EA - Team Survery</strong></td>
+      <td>40</td>
+      <td>75.0%</td>
+      <td><div class="bar-container"><div class="bar" style="width:75%"></div></div></td>
+      <td>20.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:100%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access Update 12/19</strong></td>
+      <td>27</td>
+      <td>70.4%</td>
+      <td><div class="bar-container"><div class="bar" style="width:70%"></div></div></td>
+      <td>0.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:0%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access Round 1</strong></td>
+      <td>27</td>
+      <td>85.2%</td>
+      <td><div class="bar-container"><div class="bar" style="width:85%"></div></div></td>
+      <td>44.4%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:100%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>5.16 BETA: PRIORITY PARTICIPANTS</strong></td>
+      <td>17</td>
+      <td>70.6%</td>
+      <td><div class="bar-container"><div class="bar" style="width:71%"></div></div></td>
+      <td>35.3%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:100%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access Sign-Up Nudge</strong></td>
+      <td>15</td>
+      <td>46.7%</td>
+      <td><div class="bar-container"><div class="bar" style="width:47%"></div></div></td>
+      <td>0.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:0%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access Round 2</strong></td>
+      <td>15</td>
+      <td>73.3%</td>
+      <td><div class="bar-container"><div class="bar" style="width:73%"></div></div></td>
+      <td>20.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:100%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><strong>Early Access Round 3</strong></td>
+      <td>1</td>
+      <td>0.0%</td>
+      <td><div class="bar-container"><div class="bar" style="width:0%"></div></div></td>
+      <td>0.0%</td>
+      <td><div class="bar-container"><div class="bar click" style="width:0%"></div></div></td>
+      <td>100.0%</td>
+      <td>0</td>
+    </tr>
+  </tbody></table>
+</div>
+
+<div class="section">
+  <h2>Active Flows</h2>
+  
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="name">Preorder Flow</div>
+      <div class="status"><span class="status-badge status-draft">draft</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">Essential Flow Recommendation_</div>
+      <div class="status"><span class="status-badge status-draft">draft</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">Pre-Launch Welcome</div>
+      <div class="status"><span class="status-badge status-live">live</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">FB Launch Welcome</div>
+      <div class="status"><span class="status-badge status-live">live</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">EA-Delivery Flow</div>
+      <div class="status"><span class="status-badge status-live">live</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">Review request</div>
+      <div class="status"><span class="status-badge status-manual">manual</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">Delivery Confirmation Flow</div>
+      <div class="status"><span class="status-badge status-live">live</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">Always-On Pre-Launch Welcome</div>
+      <div class="status"><span class="status-badge status-live">live</span></div>
+    </div>
+    <div class="flow-card">
+      <div class="name">Essential Flow Recommendation_</div>
+      <div class="status"><span class="status-badge status-draft">draft</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h2>Scheduled & Draft Campaigns</h2>
+  
+  <table><thead><tr><th>Campaign</th><th>Status</th><th>Created</th><th>Send Time</th></tr></thead><tbody>
+    <tr><td>Email #1 Reengage</td><td>Draft</td><td>2025-07-29</td><td>—</td></tr>
+  </tbody></table>
+
+</div>
+
+</body>
+</html>
