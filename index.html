@@ -63,6 +63,49 @@
     border-bottom: 2px solid #C1CFF866;
   }
 
+  /* Recent updates callout */
+  .callout {
+    background: #FFFBA566;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .callout h3 {
+    font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: #2B2E3F; margin-bottom: 12px;
+  }
+  .callout ul {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .callout li {
+    padding: 6px 0;
+    font-size: 13px;
+    color: #363A4F;
+    border-bottom: 1px solid #FFFBA5;
+  }
+  .callout li:last-child { border-bottom: none; }
+  .callout .date-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    color: #363A4F; opacity: 0.6;
+    min-width: 50px; margin-right: 8px;
+  }
+  .callout .stat-tag {
+    font-size: 11px; color: #363A4F; opacity: 0.6; margin-left: 6px;
+  }
+  .callout .draft-badge {
+    display: inline-block; padding: 1px 7px; border-radius: 8px;
+    font-size: 10px; font-weight: 600;
+    background: #FFC28A44; color: #363A4F;
+    margin-left: 6px;
+  }
+  .callout .scheduled-badge {
+    display: inline-block; padding: 1px 7px; border-radius: 8px;
+    font-size: 10px; font-weight: 600;
+    background: #C1CFF866; color: #363A4F;
+    margin-left: 6px;
+  }
+
   .preview-link {
     cursor: pointer; color: #AAA8FF;
     text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px;
@@ -150,6 +193,16 @@
     <div class="label">Avg. Click Rate</div>
     <div class="value">7.1%</div>
   </div>
+</div>
+
+<div class="callout">
+  <h3>Recent Updates</h3>
+  <ul>
+    <li><span class="date-tag">2026-03-14</span> <span class="preview-link" onclick="showPreview('01KKMSH58VJPG5ZCV3J2871GN5')">3/13 Subscription Issue</span> <span class="stat-tag">sent to 41 &mdash; 68.3% open rate</span></li>
+    <li><span class="date-tag">2026-03-07</span> <span class="preview-link" onclick="showPreview('01KK2CA057T4SB11TXK80D2F76')">3/7 - Last Call Early Bird</span> <span class="stat-tag">sent to 4,656 &mdash; 20.9% open rate</span></li>
+    <li><span class="date-tag">2026-03-07</span> <span class="preview-link" onclick="showPreview('01KK4J2JVH0VP7A9YNCY1GY44X')">3/7 Fit Confirmation Email</span> <span class="stat-tag">sent to 517 &mdash; 68.8% open rate</span></li>
+    <li><span class="date-tag">2025-07-29</span> <strong>Email #1 Reengage</strong> <span class="draft-badge">draft</span></li>
+  </ul>
 </div>
 
 <!-- Campaign Performance -->
