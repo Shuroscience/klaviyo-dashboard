@@ -297,7 +297,7 @@ CSS = """
 
 
 def build_html(generated_at, kpis, campaigns, flows, drafts_scheduled, lists_map):
-    sent_campaigns = [c for c in campaigns if c["status"] == "Sent"]
+    sent_campaigns = [c for c in campaigns if c["status"] in ("Sent", "Sending")]
     today = datetime.utcnow().date()
     cutoff = today - timedelta(days=14)
 
@@ -579,7 +579,7 @@ def main():
             "unsubs":      unsubs,
         })
 
-    sent_campaigns = [c for c in campaigns if c["status"] == "Sent"]
+    sent_campaigns = [c for c in campaigns if c["status"] in ("Sent", "Sending")]
     drafts_scheduled = [c for c in campaigns if c["status"] in ("Draft", "Scheduled")]
 
     # 7. KPIs
