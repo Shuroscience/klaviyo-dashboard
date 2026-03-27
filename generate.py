@@ -529,13 +529,13 @@ def main():
     camp_unsubs   = metric_agg_by(M_UNSUB,    "Campaign Name")
     camp_bounced  = metric_agg_by(M_BOUNCED,  "Campaign Name")
 
-    # 5. Flow message-level metric aggregates (grouped by Flow Message Name)
+    # 5. Flow message-level metric aggregates (grouped by Message Name)
     print("  • Flow message metrics...")
-    msg_opens    = metric_agg_by(M_OPENED,   "Flow Message Name")
-    msg_clicks   = metric_agg_by(M_CLICKED,  "Flow Message Name")
-    msg_received = metric_agg_by(M_RECEIVED, "Flow Message Name")
-    msg_unsubs   = metric_agg_by(M_UNSUB,    "Flow Message Name")
-    msg_bounced  = metric_agg_by(M_BOUNCED,  "Flow Message Name")
+    msg_opens    = metric_agg_by(M_OPENED,   "Message Name")
+    msg_clicks   = metric_agg_by(M_CLICKED,  "Message Name")
+    msg_received = metric_agg_by(M_RECEIVED, "Message Name")
+    msg_unsubs   = metric_agg_by(M_UNSUB,    "Message Name")
+    msg_bounced  = metric_agg_by(M_BOUNCED,  "Message Name")
 
     # 6. Campaigns
     print("  • Campaigns...")
